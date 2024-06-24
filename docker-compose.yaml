@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  server:
+    build:
+      context: ./server #Docker Compose sẽ tìm Dockerfile trong thư mục ./server
+    ports:
+      - "8080:8080" # Ánh xạ cổng 8080 trên máy host vào cổng 8080 trong container
+    container_name: server_nodejs
+
+  client:
+    build:
+      context: ./client
+    container_name: client_nodejs
+    depends_on:
+     - server
